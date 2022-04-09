@@ -6,7 +6,7 @@ import LimitCheckPage from '@/pages/LimitCheckPage';
 import LoanSetupPage from '@/pages/LoanSetupPage';
 import ConfirmationPage from '@/pages/ConfirmationPage';
 import CompletePage from '@/pages/CompletePage';
-import NotFound from '@/pages/NotFound';
+import NotFoundPage from '@/pages/NotFoundPage';
 
 const routes = [
   {
@@ -40,7 +40,7 @@ const routes = [
   },
   {
     path: '/:catchAll(.*)',
-    component: NotFound,
+    component: NotFoundPage,
   },
 ];
 
