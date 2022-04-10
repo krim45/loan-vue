@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="button-container">
-      <button @click="goToNext">{{ text }}</button>
+      <button class="next-button" @click="goToNext">{{ text }}</button>
     </div>
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
   padding: 0 20px 18px;
 }
 
-button {
+.next-button {
   color: #fff;
   background: #3182f6;
   width: 100%;
@@ -46,16 +46,16 @@ button {
   transition: 0.3s ease-in-out;
 }
 
-button:focus {
+.next-button:focus {
   outline: none;
 }
 
-button:disabled {
+.next-button:disabled {
   opacity: 0.25;
   cursor: not-allowed;
 }
 
-button:active {
+.next-button:active {
   background: #1b64da;
 }
 </style>
