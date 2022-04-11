@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from 'vue-router';
 
 // pages
 import StartPage from '@/pages/StartPage';
@@ -11,7 +11,7 @@ import NotFoundPage from '@/pages/NotFoundPage';
 const routes = [
   {
     path: '/',
-    redirect: '/start'
+    redirect: '/start',
   },
   {
     path: '/start',
@@ -46,7 +46,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 });
 
 export default router;
