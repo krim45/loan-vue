@@ -1,24 +1,26 @@
 <template>
   <div class="container">
     <div class="button-container">
-      <button class="next-button" @click="goToNext">{{ text }}</button>
+      <!-- <button class="next-button" @click="goToNext">{{ text }}</button> -->
+      <button class="next-button" @click="goToNext">
+        <slot />
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['text', 'path'],
+  props: ["path"],
   data() {
-    return {
-    }
+    return {};
   },
   methods: {
     goToNext() {
-      this.$router.push(this.path)
-    }
-  }
-}
+      this.$router.push(this.path);
+    },
+  },
+};
 </script>
 
 <style>
