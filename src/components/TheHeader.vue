@@ -1,7 +1,11 @@
 <template>
   <header class="nav-bar">
     <button class="back-button" @click="goBack">
-      <img class="back-img" src="https://static.toss.im/icons/png/4x/icon-arrow-left-small.png" alt="뒤로가기" />
+      <img
+        class="back-img"
+        src="https://static.toss.im/icons/png/4x/icon-arrow-left-small.png"
+        alt="뒤로가기"
+      />
     </button>
   </header>
 </template>
@@ -11,9 +15,9 @@ export default {
   methods: {
     goBack() {
       history.back();
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>
