@@ -16,7 +16,8 @@
           type="range"
           min="10"
           max="300"
-          v-model="loan"
+          :value="loan"
+          @change="handleLoan"
         />
       </div>
 
@@ -29,7 +30,11 @@
     <span class="interest-text">{{ noticeInterest }}</span>
     <span class="repayment-duration">몇개월에 걸쳐 상환할까요?</span>
     <div class="repayment-duration-container">
-      <select class="repayment-duration-selector" v-model="duration">
+      <select
+        class="repayment-duration-selector"
+        :value="duration"
+        @change="handleDuration"
+      >
         <option value="15">15</option>
         <option value="20">20</option>
         <option value="30">30</option>
@@ -48,15 +53,11 @@
 <script>
 import TheHeader from "@/components/TheHeader.vue";
 import NextButton from "@/components/NextButton.vue";
-import { setItem, getItem } from "@/utils/localStorage";
+
 export default {
   components: { TheHeader, NextButton },
-  data() {
-    return {
-      loan: getItem("loan") || 50,
-      duration: getItem("duration") || 30,
-    };
-  },
+  props: ["loan", "duration"],
+  emits: ["update-loan", "update-duration"],
   computed: {
     formatPrice() {
       let result = "";
@@ -87,12 +88,14 @@ export default {
       return "1000만원 부터는 이자가 1.8%에요";
     },
   },
-  watch: {
-    loan() {
-      setItem("loan", this.loan);
+  methods: {
+    handleLoan(e) {
+      // console.log("child", e.target.value);
+      this.$emit("update-loan", e.target.value);
     },
-    duration() {
-      setItem("duration", this.duration);
+    handleDuration(e) {
+      // console.log("child", e.target.value);
+      this.$emit("update-duration", e.target.value);
     },
   },
 };

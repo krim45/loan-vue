@@ -1,10 +1,39 @@
 <template>
-  <router-view></router-view>
+  <router-view
+    :loan="loan"
+    :duration="duration"
+    @update-loan="updateLoan"
+    @update-duration="updateDuration"
+  ></router-view>
 </template>
 
 <script>
+import { setItem, getItem } from "@/utils/localStorage";
 export default {
   name: "App",
+  data() {
+    return {
+      loan: getItem("loan") || 50,
+      duration: getItem("duration") || 30,
+    };
+  },
+  methods: {
+    updateLoan(value) {
+      console.log("parents", value);
+      this.loan = value;
+    },
+    updateDuration(value) {
+      this.duration = value;
+    },
+  },
+  watch: {
+    loan() {
+      setItem("loan", this.loan);
+    },
+    duration() {
+      setItem("duration", this.duration);
+    },
+  },
 };
 </script>
 
