@@ -15,7 +15,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .money-wings {
   display: block;
   width: 300px;

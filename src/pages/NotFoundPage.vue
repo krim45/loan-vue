@@ -4,12 +4,12 @@
     <h2>Page Not Found</h2>
   </div>
 </template>
+
 <script>
-export default {
-  
-}
+export default {};
 </script>
-<style>
+
+<style scoped>
 .not-found {
   text-align: center;
   vertical-align: middle;

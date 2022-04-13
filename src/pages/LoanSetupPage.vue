@@ -51,9 +51,9 @@ import TheHeader from "@/components/TheHeader.vue";
 import NextButton from "@/components/NextButton.vue";
 
 export default {
-  components: { TheHeader, NextButton },
   props: ["loan", "duration", "formatPrice"],
   emits: ["update-loan", "update-duration"],
+  components: { TheHeader, NextButton },
   computed: {
     progressObject() {
       return {
@@ -81,7 +81,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .setup-container {
   display: flex;
   flex-direction: column;

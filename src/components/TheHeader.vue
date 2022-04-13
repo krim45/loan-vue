@@ -20,7 +20,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .nav-bar {
   display: flex;
   padding: 11px 14px;

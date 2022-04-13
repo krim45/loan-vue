@@ -1,15 +1,11 @@
 <template>
   <TheHeader />
-  <!-- <the-header/> -->
   <h3 class="top3">{{ name }}님의 한도를 조회할게요</h3>
   <div class="process-container">
     <img class="process-img" :src="process[step].src" />
     <span class="process-text">{{ process[step].notice }}</span>
   </div>
-  <!-- <NextButton v-if="step === 'complete'" path="/loan-setup" text="확인" /> -->
   <NextButton v-if="step === 'complete'" path="/loan-setup">확인</NextButton>
-  <!-- 컴포넌트를 파스칼케이스로 정의하는 경우에는 <next-button/> 또는 <NextButton/> 두 가지 모두 사용 가능 -->
-  <!-- <next-button path="/loan-setup" text="확인"/> -->
 </template>
 
 <script>
@@ -53,7 +49,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .process-container {
   margin-top: 60px;
   display: flex;

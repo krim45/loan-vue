@@ -16,7 +16,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .complete-img {
   display: block;
   margin: 60px auto;
