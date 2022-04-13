@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="button-container">
-      <!-- <button class="next-button" @click="goToNext">{{ text }}</button> -->
       <button class="next-button" @click="goToNext">
         <slot />
       </button>
@@ -12,9 +11,6 @@
 <script>
 export default {
   props: ["path"],
-  data() {
-    return {};
-  },
   methods: {
     goToNext() {
       this.$router.push(this.path);
