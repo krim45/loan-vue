@@ -16,7 +16,7 @@
           min="10"
           max="300"
           :value="loan"
-          @change="handleLoan"
+          @input="$emit('update:loan', $event.target.value)"
         />
       </div>
       <div class="slider-label-container">
@@ -30,7 +30,7 @@
       <select
         class="repayment-duration-selector"
         :value="duration"
-        @change="handleDuration"
+        @input="$emit('update:duration', $event.target.value)"
       >
         <option value="15">15</option>
         <option value="20">20</option>
@@ -52,7 +52,6 @@ import NextButton from "@/components/NextButton.vue";
 
 export default {
   props: ["loan", "duration", "formatPrice"],
-  emits: ["update-loan", "update-duration"],
   components: { TheHeader, NextButton },
   computed: {
     progressObject() {
@@ -68,14 +67,6 @@ export default {
         return "1억1500만원 부터는 이자가 2%에요";
       }
       return "1000만원 부터는 이자가 1.8%에요";
-    },
-  },
-  methods: {
-    handleLoan(e) {
-      this.$emit("update-loan", e.target.value);
-    },
-    handleDuration(e) {
-      this.$emit("update-duration", e.target.value);
     },
   },
 };

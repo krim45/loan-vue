@@ -1,10 +1,8 @@
 <template>
   <router-view
-    :loan="loan"
-    :duration="duration"
+    v-model:loan="loan"
+    v-model:duration="duration"
     :formatPrice="formatPrice"
-    @update-loan="updateLoan"
-    @update-duration="updateDuration"
   ></router-view>
 </template>
 
@@ -17,14 +15,6 @@ export default {
       loan: getItem("loan") || 50,
       duration: getItem("duration") || 30,
     };
-  },
-  methods: {
-    updateLoan(value) {
-      this.loan = value;
-    },
-    updateDuration(value) {
-      this.duration = value;
-    },
   },
   computed: {
     formatPrice() {
