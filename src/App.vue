@@ -2,6 +2,7 @@
   <router-view
     :loan="loan"
     :duration="duration"
+    :formatPrice="formatPrice"
     @update-loan="updateLoan"
     @update-duration="updateDuration"
   ></router-view>
@@ -19,11 +20,26 @@ export default {
   },
   methods: {
     updateLoan(value) {
-      console.log("parents", value);
       this.loan = value;
     },
     updateDuration(value) {
       this.duration = value;
+    },
+  },
+  computed: {
+    formatPrice() {
+      let result = "";
+      let price = this.loan * 1000000;
+
+      if (price >= 100000000) {
+        result += Math.floor(price / 100000000) + "억";
+        price %= 100000000;
+      }
+      if (price >= 10000) {
+        result += Math.floor(price / 10000) + "만원";
+        price %= 10000;
+      }
+      return result;
     },
   },
   watch: {

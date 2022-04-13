@@ -3,7 +3,6 @@
   <h3 class="top3">대출 내용을 설정할게요</h3>
   <div class="setup-container">
     <span class="setup-text">얼마나 빌릴까요? {{ formatPrice }}</span>
-
     <div class="slider">
       <div class="slider-container">
         <div class="slider-track">
@@ -20,13 +19,11 @@
           @change="handleLoan"
         />
       </div>
-
       <div class="slider-label-container">
         <label class="slider-label">1000만원</label>
         <label class="slider-label">3억원</label>
       </div>
     </div>
-
     <span class="interest-text">{{ noticeInterest }}</span>
     <span class="repayment-duration">몇개월에 걸쳐 상환할까요?</span>
     <div class="repayment-duration-container">
@@ -46,7 +43,6 @@
       />
     </div>
   </div>
-
   <NextButton path="/confirmation">확인</NextButton>
 </template>
 
@@ -56,23 +52,9 @@ import NextButton from "@/components/NextButton.vue";
 
 export default {
   components: { TheHeader, NextButton },
-  props: ["loan", "duration"],
+  props: ["loan", "duration", "formatPrice"],
   emits: ["update-loan", "update-duration"],
   computed: {
-    formatPrice() {
-      let result = "";
-      let price = this.loan * 1000000;
-
-      if (price >= 100000000) {
-        result += Math.floor(price / 100000000) + "억";
-        price %= 100000000;
-      }
-      if (price >= 10000) {
-        result += Math.floor(price / 10000) + "만원";
-        price %= 10000;
-      }
-      return result;
-    },
     progressObject() {
       return {
         transform: "translateX(" + ((this.loan - 10) / 290) * 100 + "%)",
@@ -90,11 +72,9 @@ export default {
   },
   methods: {
     handleLoan(e) {
-      // console.log("child", e.target.value);
       this.$emit("update-loan", e.target.value);
     },
     handleDuration(e) {
-      // console.log("child", e.target.value);
       this.$emit("update-duration", e.target.value);
     },
   },
