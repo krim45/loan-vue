@@ -2,11 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 // pages
 import StartPage from '@/pages/StartPage';
-import LimitCheckPage from '@/pages/LimitCheckPage';
-import LoanSetupPage from '@/pages/LoanSetupPage';
-import ConfirmationPage from '@/pages/ConfirmationPage';
-import CompletePage from '@/pages/CompletePage';
-import NotFoundPage from '@/pages/NotFoundPage';
+const LimitCheckPage = () => import('@/pages/LimitCheckPage');
+const LoanSetupPage = () => import('@/pages/LoanSetupPage');
+const ConfirmationPage = () => import('@/pages/ConfirmationPage');
+const CompletePage = () => import('@/pages/CompletePage');
+const NotFoundPage = () => import('@/pages/NotFoundPage');
 
 const routes = [
   {
