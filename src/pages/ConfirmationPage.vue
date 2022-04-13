@@ -17,13 +17,12 @@
 <script>
 import TheHeader from "@/components/TheHeader.vue";
 import NextButton from "@/components/NextButton.vue";
-import { clearItem } from "@/utils/localStorage";
+import { removeItem } from "@/utils/localStorage";
 export default {
   components: { TheHeader, NextButton },
   props: ["duration", "formatPrice"],
-  // emits: ["update-loan", "update-duration"],
   mounted() {
-    clearItem();
+    removeItem("loan", "duration");
   },
 };
 </script>
