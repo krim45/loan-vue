@@ -2,7 +2,9 @@
   <TheHeader />
   <h3 class="top3">대출 내용을 설정할게요</h3>
   <div class="setup-container">
-    <span class="setup-text">얼마나 빌릴까요? {{ formatPrice }}</span>
+    <span class="setup-text"
+      >얼마나 빌릴까요? {{ this.$store.getters.formatPrice }}</span
+    >
     <div class="slider">
       <div class="slider-container">
         <div class="slider-track">
@@ -15,8 +17,7 @@
           type="range"
           min="10"
           max="300"
-          :value="loan"
-          @input="$emit('update:loan', $event.target.value)"
+          v-model.number="this.$store.state.loan"
         />
       </div>
       <div class="slider-label-container">
@@ -29,8 +30,7 @@
     <div class="repayment-duration-container">
       <select
         class="repayment-duration-selector"
-        :value="duration"
-        @input="$emit('update:duration', $event.target.value)"
+        v-model.number="this.$store.state.duration"
       >
         <option value="15">15</option>
         <option value="20">20</option>
@@ -49,24 +49,33 @@
 <script>
 import TheHeader from "@/components/TheHeader.vue";
 import NextButton from "@/components/NextButton.vue";
+import { setItem } from "@/utils/localStorage";
 
 export default {
-  props: ["loan", "duration", "formatPrice"],
   components: { TheHeader, NextButton },
   computed: {
     progressObject() {
       return {
-        transform: "translateX(" + ((this.loan - 10) / 290) * 100 + "%)",
+        transform:
+          "translateX(" + ((this.$store.state.loan - 10) / 290) * 100 + "%)",
       };
     },
     noticeInterest() {
-      if (this.loan * 1000000 >= 200000000) {
+      if (this.$store.state.loan * 1000000 >= 200000000) {
         return "2억원 부터는 이자가 3.5%에요";
       }
-      if (this.loan * 1000000 >= 115000000) {
+      if (this.$store.state.loan * 1000000 >= 115000000) {
         return "1억1500만원 부터는 이자가 2%에요";
       }
       return "1000만원 부터는 이자가 1.8%에요";
+    },
+  },
+  watch: {
+    "$store.state.loan": function () {
+      setItem("loan", this.$store.state.loan);
+    },
+    "$store.state.duration": function () {
+      setItem("duration", this.$store.state.duration);
     },
   },
 };

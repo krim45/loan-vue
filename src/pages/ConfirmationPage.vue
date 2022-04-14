@@ -4,11 +4,11 @@
   <ul class="list-contianr">
     <li class="list">
       <span>대출금액</span>
-      <span>{{ formatPrice }}</span>
+      <span>{{ this.$store.getters.formatPrice }}</span>
     </li>
     <li class="list">
       <span>상환기한</span>
-      <span>{{ duration }}개월</span>
+      <span>{{ this.$store.state.duration }}개월</span>
     </li>
   </ul>
   <NextButton path="/complete">확인</NextButton>
@@ -20,7 +20,6 @@ import NextButton from "@/components/NextButton.vue";
 import { removeItem } from "@/utils/localStorage";
 export default {
   components: { TheHeader, NextButton },
-  props: ["duration", "formatPrice"],
   mounted() {
     removeItem("loan", "duration");
   },

@@ -1,45 +1,10 @@
 <template>
-  <router-view
-    v-model:loan="loan"
-    v-model:duration="duration"
-    :formatPrice="formatPrice"
-  ></router-view>
+  <router-view></router-view>
 </template>
 
 <script>
-import { setItem, getItem } from "@/utils/localStorage";
 export default {
   name: "App",
-  data() {
-    return {
-      loan: getItem("loan") || 50,
-      duration: getItem("duration") || 30,
-    };
-  },
-  computed: {
-    formatPrice() {
-      let result = "";
-      let price = this.loan * 1000000;
-
-      if (price >= 100000000) {
-        result += Math.floor(price / 100000000) + "억";
-        price %= 100000000;
-      }
-      if (price >= 10000) {
-        result += Math.floor(price / 10000) + "만원";
-        price %= 10000;
-      }
-      return result;
-    },
-  },
-  watch: {
-    loan() {
-      setItem("loan", this.loan);
-    },
-    duration() {
-      setItem("duration", this.duration);
-    },
-  },
 };
 </script>
 
