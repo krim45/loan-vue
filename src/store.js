@@ -22,6 +22,14 @@ const store = createStore({
       return result;
     },
   },
+  mutations: {
+    updateLoan(state, value) {
+      state.loan = value;
+    },
+    updateDuration(state, value) {
+      state.duration = value;
+    },
+  },
 });
 
 export default store;

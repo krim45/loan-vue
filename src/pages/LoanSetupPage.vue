@@ -2,9 +2,7 @@
   <TheHeader />
   <h3 class="top3">대출 내용을 설정할게요</h3>
   <div class="setup-container">
-    <span class="setup-text"
-      >얼마나 빌릴까요? {{ this.$store.getters.formatPrice }}</span
-    >
+    <span class="setup-text"> 얼마나 빌릴까요? {{ formatPrice }} </span>
     <div class="slider">
       <div class="slider-container">
         <div class="slider-track">
@@ -17,7 +15,7 @@
           type="range"
           min="10"
           max="300"
-          v-model.number="this.$store.state.loan"
+          v-model.number="loan"
         />
       </div>
       <div class="slider-label-container">
@@ -28,10 +26,7 @@
     <span class="interest-text">{{ noticeInterest }}</span>
     <span class="repayment-duration">몇개월에 걸쳐 상환할까요?</span>
     <div class="repayment-duration-container">
-      <select
-        class="repayment-duration-selector"
-        v-model.number="this.$store.state.duration"
-      >
+      <select class="repayment-duration-selector" v-model.number="duration">
         <option value="15">15</option>
         <option value="20">20</option>
         <option value="30">30</option>
@@ -54,6 +49,22 @@ import { setItem } from "@/utils/localStorage";
 export default {
   components: { TheHeader, NextButton },
   computed: {
+    loan: {
+      get() {
+        return this.$store.state.loan;
+      },
+      set(value) {
+        this.$store.commit("updateLoan", value);
+      },
+    },
+    duration: {
+      get() {
+        return this.$store.state.duration;
+      },
+      set(value) {
+        this.$store.commit("updateDuration", value);
+      },
+    },
     progressObject() {
       return {
         transform:
@@ -68,6 +79,9 @@ export default {
         return "1억1500만원 부터는 이자가 2%에요";
       }
       return "1000만원 부터는 이자가 1.8%에요";
+    },
+    formatPrice() {
+      return this.$store.getters.formatPrice;
     },
   },
   watch: {
